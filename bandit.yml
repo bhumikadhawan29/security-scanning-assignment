@@ -1,0 +1,15 @@
+name: Bandit Security Scan
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Bandit
+        uses: PyCQA/bandit-action@v1
