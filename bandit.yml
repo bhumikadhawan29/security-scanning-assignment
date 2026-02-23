@@ -1,17 +1,18 @@
-name: Bandit
+name: Bandit Scan
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
-  analyze:
+  bandit:
     runs-on: ubuntu-latest
-    permissions:
-      # required for all workflows
-      security-events: write
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
+
     steps:
-      - name: Perform Bandit Analysis
-        uses: PyCQA/bandit-action@v1
+    - uses: actions/checkout@v3
+
+    - name: Run Bandit
+      uses: PyCQA/bandit-action@v1.0.1
+      with:
+        path: "."
